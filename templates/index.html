@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+    {% block content %}    
+    <div class="ui main container">
+        <div class="ui stackable grid">
+            <div class="row">
+                <div class="sixteen column wide center aligned">
+                    <div class="ui two statistics">
+                        <div class="statistic animated zoomIn">
+                            <div class="value">
+                            {{ total_cards }}
+                            </div>
+                            <div class="label">
+                                Card(s)
+                            </div>
+                        </div>  
+                        <div class="statistic animated zoomIn">
+                            <div class="value">
+                                {{ all_topics_len }}
+                            </div>
+                            <div class="label">
+                            Different Topic(s)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="eight wide column">
+                    <div class="ui tall stacked segment">
+                        <a class="ui black ribbon label">Topic</a>
+                        {% if card %}
+                        <h1 class="ui header ellipsis topic">{{ card.topic }}</h1>
+                        {% else %}
+                        <h1 class="ui header ellipsis topic">Topic will go here:</h1>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <div class="ui tall stacked segment">
+                        <a class="ui green ribbon label">Question</a>
+                        <div class="ui green right corner label"
+                        data-content="Add a new Flash Card."
+                        data-position="right center">
+                            <a href="/cards/new"><i class="add icon" style="cursor: pointer;"></i></a> 
+                        </div>
+                        {% if card%}
+                        <h1 class="ui header ellipsis question">{{ card.question }}</h1>
+                        {% else %}
+                        <h1 class="ui header ellipsis question">Question will go here:</h1>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% if card%}
+                <div class="sixteen wide column">
+                    <a class="ui left floated big green button" href="/cards/{{ card.id }}">Edit!</a>
+                    <!-- <div class="ui right floated massive teal buttons">
+                        <div class="ui button">View!</div>
+                        <div class="ui floating dropdown icon button">
+                            <i class="dropdown icon"></i>
+                            <div class="ui big menu">
+                            <a href="/cards/general" class="item"><i class="edit icon"></i> General</a>
+                            <a href="/cards/code" class="item"><i class="code icon"></i> Code</a>
+                            <a href="/cards" class="item"><i class="globe icon"></i> All</a>
+                            </div>
+                        </div> -->
+                        <div class="ui labeled icon top right pointing dropdown right floated big teal button">
+                            <i class="filter icon"></i>
+                            <span class="text">Filter Cards</span>
+                            <div class="scrollable menu">
+                              <div class="ui search icon input">
+                                <i class="search icon"></i>
+                                <input type="text" name="search" placeholder="Search cards...">
+                              </div>
+                              <div class="divider"></div>
+                              <div class="header">
+                                <i class="tags icon"></i>
+                                Filter by category
+                              </div>
+                              <a class="item" href="/cards/category/general">
+                                <div class="ui blue empty circular label"></div>
+                                General
+                              </a>
+                              <a class="item" href="/cards/category/code">
+                                <div class="ui yellow empty circular label"></div>
+                                Code
+                              </a>
+                              <a class="item" href="/cards">
+                                <div class="ui green empty circular label"></div>
+                                All
+                              </a>
+                              <div class="divider"></div>
+                              <div class="header">
+                                <i class="code icon"></i>
+                                Filter by topic
+                              </div>
+                              {% set seq = ['blue', 'red', 'green', 'yellow', 'black', 'olive', 'violet', 'orange', 'purple', 'pink', 'brown'] %} 
+
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div> 
+    {% endblock %}

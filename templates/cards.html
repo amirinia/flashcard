@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block head %}
+    {{super()}}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/codestyles.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="ui segment">
+        <div class="ui stackable grid">
+            {% for card in cards %}
+            <div class="four wide column" >
+            <div class="ui fluid card">
+                    <div class="content">
+                        <div class="topic ellipsis header">
+                            {{card.question}}
+                        </div>
+                        <div class="question ellipsis meta">
+                            {{card.topic}}
+                        </div>
+                        <div class="description">
+                        </div>
+                    </div>
+                    <div class="extra content" onmouseover="showDescription(this)" onmouseout="showDescription(this)">
+                        <div class="sixteen wide column">
+                            <div class="ui left floated yellow button toggle" onclick="showModal(this)">See Card</div>
+                            <a class="ui right floated green button toggle" href="/cards/{{ card.id }}">Edit!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="ui long modal">
+        <i class="close icon"></i>
+        <div class="modaltitle header">
+            Test
+        </div>
+        <div class="modalcontent content"> 
+            <!-- Question/Code goes here! -->
+        </div>
+        <div class="actions">
+            <div class="ui red deny button">
+            Hm, review!
+            </div>
+            <div class="ui positive right labeled icon button">
+            Yep, I know this one!
+            <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+{% endblock %}

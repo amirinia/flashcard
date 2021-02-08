@@ -1,0 +1,39 @@
+.main {
+    margin-top: 20em;
+}
+
+.question, .topic {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+}
+
+.long.modal {
+    height: 500px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modalcontent {
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.scrollable {
+    height: 300px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.toggle {
+    visibility: hidden;
+}
+
+.actions {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
