@@ -42,7 +42,7 @@
                         data-content="Add a new Flash Card."
                         data-position="right center">
                             <a href="/cards/new"><i class="add icon" style="cursor: pointer;"></i></a> 
-                        </div>
+                        </div class="content_section">
                         {% if card%}
                         <h1 class="ui header ellipsis question">{{ card.question }}</h1>
                         {% else %}
@@ -55,11 +55,13 @@
                 {% if card%}
                 <div class="sixteen wide column">
                    <!-- <a class="ui left floated big yellow button" href="/cards/{{ card.id }}">Edit!</a>-->
+
                    <a class="ui left floated big green button" href="/">Next Random Card!</a>
 
                    <a class="ui left floated big yellow button" href="/cards">Show all cards</a>
 
-                    <!-- <div class="ui right floated massive teal buttons">
+
+                                       <!-- <div class="ui right floated massive teal buttons">
                         <div class="ui button">View!</div>
                         <div class="ui floating dropdown icon button">
                             <i class="dropdown icon"></i>
@@ -111,3 +113,4 @@
         </div>
     </div> 
     {% endblock %}
+

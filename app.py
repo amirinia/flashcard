@@ -55,7 +55,6 @@ def new_card():
         category = request.form["category"]      
         topic = request.form["topic"]
         question = request.form["question"]
-
         if category == 'code':
             #using pygments to store code as html elements for highlighting.
             question = highlight(question, PythonLexer(), HtmlFormatter())
@@ -67,18 +66,17 @@ def new_card():
         #return card_schema.jsonify(card)
 
 @app.route("/")
-
 def index():
     
         all_satis = Card.query.all()
         cards = cards_schema.dump(all_satis)
-        #topics = set(list(t.topic for t in cards))
+        topics = set(list(t.topic for t in all_satis))
         random_card = random.choice(cards)
         total_cards = len(cards)
-        #all_topics_len = len(topics)
-        #all_topics = sorted(topics)
-        all_topics_len = 0
-        all_topics = 0
+        all_topics_len = len(topics)
+        all_topics = sorted(topics)
+        #all_topics_len = 0
+        #all_topics = 0
         #return jsonify(total_cards)
         return render_template("index.html", card=random_card, total_cards=total_cards, all_topics_len=all_topics_len, all_topics=all_topics)
 
@@ -98,7 +96,6 @@ def edit(card_id):
     card = Card.query.get(card_id)
     card.question = request.form["question"]
     card.topic = request.form["topic"]
-    
     db.session.commit()
     return redirect("/")
 
@@ -130,14 +127,16 @@ Like if checkbox == category or topic do first querying, else do second.
 @app.route("/cards/category/<string:card_category>")
 def get_card_category(card_category):
     all_satis = Card.query.all()
-    cards = cards_schema.dump(all_satis)
+    #cards = cards_schema.dump(all_satis)
+    cards = [c for c in all_satis if c.category == card_category]
     return render_template("cards.html", cards=cards)
 
 # Cards by Topic.
 @app.route("/cards/topic/<string:card_topic>")
 def get_card_topic(card_topic):
     all_satis = Card.query.all()
-    cards = cards_schema.dump(all_satis)
+    #cards = cards_schema.dump(all_satis)
+    cards = [c for c in all_satis if c.topic == card_topic]
     print(cards)
     return render_template("cards.html", cards=cards)
 
