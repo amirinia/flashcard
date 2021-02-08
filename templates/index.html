@@ -1,8 +1,8 @@
 {% extends "base.html" %}
     {% block content %}    
-    <div class="ui main container">
+    <div class="ui text container">
         <div class="ui stackable grid">
-            <!--<div class="row">
+            <div class="row">
                 <div class="ten column wide center aligned">
                     <div class="ui two statistics">
                         <div class="statistic animated zoomIn">
@@ -15,7 +15,7 @@
                         </div>  
                         <div class="statistic animated zoomIn">
                             <div class="value">
-                                {{ all_topics_len }}
+                                {{ temp }}
                             </div>
                             <div class="label">
                             Different Topic(s)
@@ -23,9 +23,9 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>
             <div class="row">
-                <div class="eight wide column">
+                <div class="sixteen wide column">
                     <div class="ui tall stacked segment">
                         <a class="ui black ribbon label">Question</a>
                         <a class="item">
@@ -44,9 +44,14 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="eight wide column" >  
+                <h4 class="ui horizontal divider header">
+                    <i class="thumbtack icon"></i>
+                   
+                  </h4>
+
+                <div class="sixteen wide column" >  
                     <div class="ui tall stacked segment">
-                        <a class="ui green ribbon label">Answer</a>
+                        <a class="ui green ribbon label" >Answer</a>
                         <div class="ui green right corner label"
                         data-content="Add a new Flash Card."
                         data-position="right center">
@@ -54,7 +59,7 @@
                         </div class="content_section">
                         
                         {% if card%}
-                        <h1 class="ui header ellipsis question">{{ card.question }}</h1>
+                        <h2 >{{ card.question }}</h2>
                         {% else %}
                         <h1 class="ui header ellipsis question">Question will go here:</h1>
                         {% endif %}
@@ -63,6 +68,13 @@
                 </div>
             </div>
 
+            <button type="submit" class="ui circular teal button" onclick=""><i class="eye slash outline icon"></i>unhide Ans!</button>
+            
+            <div class="ui small circular rotate reveal image">
+                <img src="justen.jpg" class="visible content">
+                <img src="stevie.jpg" class="hidden content">
+
+              </div>
 
             <div class="inner">
                     <form action="/inc/{{card.id}}" method="POST" class="ui forminc">
@@ -73,9 +85,9 @@
                         <div class="ui labeled button" >
         
                             <button type="submit"iv class="ui red button">
-                              <i class="world icon"></i> No Idea
+                              <i class="battery quarter icon"></i> No Idea 
                             </button>
-                            <a class="ui tag label">Hard :( </a>
+                            <a class="ui tag label"><i class="thumbs down icon"></i>Hard  </a>
         
                             {% if card%}
         
@@ -96,9 +108,9 @@
                             </div>
                         <div class="ui labeled button" >
                             <button type="submit"iv class="ui green button">
-                                <i class="world icon"></i> I knew it 
+                                <i class="battery full icon"></i> I knew it 
                             </button>
-                            <a class="ui tag label">Easy :) </a>
+                            <a class="ui tag label"><i class="thumbs up outline icon"></i>Easy </a>
         
                             {% if card%}
                             <a class="ui basic yellow left pointing label">

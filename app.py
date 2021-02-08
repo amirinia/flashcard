@@ -68,7 +68,7 @@ def new_card():
         return redirect("/")
         #return card_schema.jsonify(card)
 
-@app.route("/",methods=["GET", "POST"])
+@app.route("/",methods=["GET"])
 def index():
     all_satis = Card.query.all()
     cards = cards_schema.dump(all_satis)
@@ -78,9 +78,18 @@ def index():
     total_cards = len(cards)
     all_topics_len = len(topics)
     all_topics = sorted(topics)
-    all_difficulties = sorted(difficulties)
+    hardcard = 0
+
+    try:
+        all_difficulties = sorted(difficulties)
+        all_satis = Card.query.order_by(Card.difficulty.desc())
+        cards = cards_schema.dump(all_satis)
+        hardcard = cards[0]["difficulty"]
+    except:
+        all_difficulties = 0
+        
     #return jsonify(total_cards)
-    return render_template("index.html", card=random_card, total_cards=total_cards, all_topics_len=all_topics_len, all_topics=all_topics,cards=all_satis,all_difficulties=all_difficulties)
+    return render_template("index.html", temp=hardcard, card=random_card, total_cards=total_cards, all_topics_len=all_topics_len, all_topics=all_topics,cards=all_satis,all_difficulties=all_difficulties)
 
 
 @app.route("/inc/<int:card_id>",methods=[ "POST"])
