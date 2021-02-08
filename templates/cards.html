@@ -5,16 +5,42 @@
 {% endblock %}
 {% block content %}
     <div class="ui segment">
+
+        <div class="ui icon input loading">
+            <input type="text" placeholder="Search...">
+            <i class="search icon"></i>
+          </div>
+
+          <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="inverted circular search link icon"></i>
+          </div>
+
+
         <div class="ui stackable grid">
             {% for card in cards %}
             <div class="four wide column" >
             <div class="ui fluid card">
                     <div class="content">
+
                         <div class="topic ellipsis header">
-                            {{card.question}}
+                            <a class="music popup icon item" data-content="Play Music">
+                                <i class="play icon"></i>
+                              </a>
+                            {{card.question}}                        
+
                         </div>
                         <div class="question ellipsis meta">
+                            <a class="bug popup icon item" >
+                                <i class="world icon"></i>
+                              </a>
                             {{card.topic}}
+                        </div>
+                        <div class="question ellipsis meta">
+                            <a class="bug popup icon item" >
+                                <i class="edit icon"></i>
+                              </a>
+                            {{card.difficulty}}
                         </div>
                         <div class="description">
                         </div>
@@ -22,7 +48,7 @@
                     <div class="extra content" onmouseover="showDescription(this)" onmouseout="showDescription(this)">
                         <div class="sixteen wide column">
                             <div class="ui left floated yellow button toggle" onclick="showModal(this)">See Card</div>
-                            <a class="ui right floated green button toggle" href="/cards/{{ card.id }}">Edit!</a>
+                            <a class="ui right floated green button toggle" href="/cards/{{card.id}}">Edit!</a>
                         </div>
                     </div>
                 </div>
@@ -37,10 +63,19 @@
         </div>
         <div class="modalcontent content"> 
             <!-- Question/Code goes here! -->
+            (this)
         </div>
         <div class="actions">
             <div class="ui red deny button">
             Hm, review!
+            </div>
+            <div class="ui labeled button" tabindex="0">
+                <div class="ui red button">
+                  <i class="heart icon"></i> Like
+                </div>
+                <a class="ui basic red left pointing label">
+                  1,048
+                </a>
             </div>
             <div class="ui positive right labeled icon button">
             Yep, I know this one!

@@ -6,7 +6,7 @@
             <div class="eight wide column">
                 <form action="/cards/{{card.id}}" method="POST" class="ui form">
                     <div class="field">
-                        <label for="topic">Question</label>
+                        <label for="topic">Question {{card.id}}</label>
                         <input type="text" name="topic" value="{{ card.topic }}"> 
                     </div>
                     <div class="field">
@@ -14,6 +14,14 @@
                         <!-- <input type="text" name="question" value="{{ card.question }}"> -->
                         <textarea name="question" id="" cols="30" rows="10">{{ card.question }}</textarea>
                     </div>
+                    <div class="field">
+                        <label for="difficulty">difficulty</label>
+                        <!-- <input type="text" name="question" value="{{ card.question }}"> -->
+                        <textarea name="difficulty" id="" cols="1" rows="1">{{ card.difficulty }}</textarea>
+                    </div>
+                    <div class="question ellipsis meta">
+                    </div>
+                    
                     <button type="submit" class="ui circular teal button">Update!</button>
                 </form>
             </div>

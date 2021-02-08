@@ -24,6 +24,7 @@ class Card(db.Model):
    category = db.Column(db.String(100))
    topic = db.Column(db.String(100))
    question = db.Column(db.String(100000))
+   difficulty = db.Column(db.Integer)
    timestamp = db.Column(db.String(100), nullable=False,default = datetime.utcnow)
    #user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
@@ -35,7 +36,7 @@ class Card(db.Model):
 # user cards
 class CardSchema(ma.Schema):
   class Meta:
-    fields = ( 'category', 'topic', 'question')
+    fields = ( 'id','category', 'topic','difficulty', 'question','timestamp')
 
 # Init schema
 card_schema = CardSchema()
@@ -55,6 +56,8 @@ def new_card():
         category = request.form["category"]      
         topic = request.form["topic"]
         question = request.form["question"]
+        difficulty = request.form["difficulty"]
+        timestamp = time.ctime()
         if category == 'code':
             #using pygments to store code as html elements for highlighting.
             question = highlight(question, PythonLexer(), HtmlFormatter())
@@ -65,21 +68,34 @@ def new_card():
         return redirect("/")
         #return card_schema.jsonify(card)
 
-@app.route("/")
+@app.route("/",methods=["GET", "POST"])
 def index():
-    
-        all_satis = Card.query.all()
-        cards = cards_schema.dump(all_satis)
-        topics = set(list(t.topic for t in all_satis))
-        random_card = random.choice(cards)
-        total_cards = len(cards)
-        all_topics_len = len(topics)
-        all_topics = sorted(topics)
-        #all_topics_len = 0
-        #all_topics = 0
-        #return jsonify(total_cards)
-        return render_template("index.html", card=random_card, total_cards=total_cards, all_topics_len=all_topics_len, all_topics=all_topics)
+    all_satis = Card.query.all()
+    cards = cards_schema.dump(all_satis)
+    topics = set(list(t.topic for t in all_satis))
+    difficulties = set(list(t.difficulty for t in all_satis))
+    random_card = random.choice(cards)
+    total_cards = len(cards)
+    all_topics_len = len(topics)
+    all_topics = sorted(topics)
+    all_difficulties = sorted(difficulties)
+    #return jsonify(total_cards)
+    return render_template("index.html", card=random_card, total_cards=total_cards, all_topics_len=all_topics_len, all_topics=all_topics,cards=all_satis,all_difficulties=all_difficulties)
 
+
+@app.route("/inc/<int:card_id>",methods=[ "POST"])
+def indexinc(card_id):
+    card = Card.query.get(card_id)
+    card.difficulty = int(request.form["difficulty"]) + 1
+    db.session.commit()
+    return redirect("/")
+
+@app.route("/dec/<int:card_id>",methods=[ "POST"])
+def indexdec(card_id):
+    card = Card.query.get(card_id)
+    card.difficulty = int(request.form["difficulty"]) - 1
+    db.session.commit()
+    return redirect("/")
 # ---------------------------------------------------------------
 
 # Show card's form with card info populated on form based on card id.
@@ -96,6 +112,8 @@ def edit(card_id):
     card = Card.query.get(card_id)
     card.question = request.form["question"]
     card.topic = request.form["topic"]
+    card.difficulty = request.form["difficulty"]
+
     db.session.commit()
     return redirect("/")
 
@@ -137,7 +155,7 @@ def get_card_topic(card_topic):
     all_satis = Card.query.all()
     #cards = cards_schema.dump(all_satis)
     cards = [c for c in all_satis if c.topic == card_topic]
-    print(cards)
+    #print(cards)
     return render_template("cards.html", cards=cards)
 
 

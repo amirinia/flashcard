@@ -11,6 +11,8 @@ function showModal(el) {
     let card = $(el).parent().parent().parent(),
     topic = card.find(".topic").text(),
     question = card.find(".question").text(),
+    difficulty = card.find(".difficulty").text(),
+
     modaltitle = document.querySelector(".modaltitle")
 
     console.log(card);

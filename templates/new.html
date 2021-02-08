@@ -12,7 +12,52 @@
                  -->
                 <textarea name="question" id="" cols="30" rows="20"></textarea>
             </div>
+            <!--<div class="field">
+                <label for="difficulty">difficulty</label>
+                <input type="text" name="difficulty"> 
+            </div>-->
+            <div class="field">
+                <label for="category">category</label>
+                <input type="text" name="category"> 
+            </div>
+            <div class="field">
+                <label class="input-group-text" for="difficulty">Options</label>
+                <select class="form-select" name="difficulty">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+
+              <div class="ui right labeled left icon input">
+                <i class="tags icon"></i>
+                <input type="text" placeholder="Enter tags">
+                <a class="ui tag label">
+                  Add Tag
+                </a>
+              </div>
+
+              <div class="ui right labeled input">
+                <input type="text" placeholder="Find domain">
+                <div class="ui dropdown label">
+                  <div class="text">.com</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item">.com</div>
+                    <div class="item">.net</div>
+                    <div class="item">.org</div>
+                  </div>
+                </div>
+              </div>
+              
             <div class="inline fields">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="category" value="english" required>
+                        <label>English</label>
+                    </div>
+                </div>
                 <div class="field">
                     <div class="ui radio checkbox">
                         <input type="radio" name="category" value="general" required>

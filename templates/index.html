@@ -3,14 +3,14 @@
     <div class="ui main container">
         <div class="ui stackable grid">
             <div class="row">
-                <div class="sixteen column wide center aligned">
+                <div class="ten column wide center aligned">
                     <div class="ui two statistics">
                         <div class="statistic animated zoomIn">
                             <div class="value">
                             {{ total_cards }}
                             </div>
                             <div class="label">
-                                Card(s)
+                                Number of Card(s)
                             </div>
                         </div>  
                         <div class="statistic animated zoomIn">
@@ -28,14 +28,21 @@
                 <div class="eight wide column">
                     <div class="ui tall stacked segment">
                         <a class="ui black ribbon label">Question</a>
+                        
+                        <div class="ui red right corner label"
+                        data-content="Difficulty."
+                        data-position="right center">
+                            <a ><i class="" ></i>{{ card.difficulty }}</a> 
+                        </div class="">
+
                         {% if card %}
-                        <h1 class="ui header ellipsis topic">{{ card.topic }}</h1>
+                        <h1 class="ui header ellipsis topic">{{ card.difficulty }} {{ card.topic }}</h1>
                         {% else %}
                         <h1 class="ui header ellipsis topic">Topic will go here:</h1>
                         {% endif %}
                     </div>
                 </div>
-                <div class="eight wide column">
+                <div class="eight wide column" >  
                     <div class="ui tall stacked segment">
                         <a class="ui green ribbon label">Answer</a>
                         <div class="ui green right corner label"
@@ -51,64 +58,134 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
-                {% if card%}
-                <div class="sixteen wide column">
-                   <!-- <a class="ui left floated big yellow button" href="/cards/{{ card.id }}">Edit!</a>-->
-
-                   <a class="ui left floated big green button" href="/">Next Random Card!</a>
-
-                   <a class="ui left floated big yellow button" href="/cards">Show all cards</a>
+                <div class="ui inverted segment">
+                    <div class="ui active inverted placeholder">
 
 
-                                       <!-- <div class="ui right floated massive teal buttons">
-                        <div class="ui button">View!</div>
-                        <div class="ui floating dropdown icon button">
-                            <i class="dropdown icon"></i>
-                            <div class="ui big menu">
-                            <a href="/cards/general" class="item"><i class="edit icon"></i> General</a>
-                            <a href="/cards/code" class="item"><i class="code icon"></i> Code</a>
-                            <a href="/cards" class="item"><i class="globe icon"></i> All</a>
+
+                            <form action="/inc/{{card.id}}" method="POST" class="ui forminc">
+                                <div class="field"style="display: none;">
+                                    <!-- <input type="text" name="question" value="{{ card.question }}"> -->
+                                    <textarea name="difficulty" id="" cols="1" rows="1">{{ card.difficulty }}</textarea>
+                                </div>
+                            <div class="ui labeled button" tabindex="0">
+                                <button type="submit"iv class="ui red button">
+                                  <i class="world icon"></i> No Idea
+                                </button>
+                                {% if card%}
+                                <a class="ui basic blue left pointing label">
+                                    {{ card.difficulty }}
+                                </a>
+                                {% endif %}
                             </div>
-                        </div> -->
+                            </form>
 
-                        <div class="ui labeled icon top right pointing dropdown right floated big teal button">
-                            <i class="filter icon"></i>
-                            <span class="text">Filter Cards</span>
-                            <div class="scrollable menu">
-                              <div class="ui search icon input">
-                                <i class="search icon"></i>
-                                <input type="text" name="search" placeholder="Search cards...">
-                              </div>
-                              <div class="divider"></div>
-                              <div class="header">
-                                <i class="tags icon"></i>
-                                Filter by category
-                              </div>
-                              <a class="item" href="/cards/category/general">
-                                <div class="ui blue empty circular label"></div>
-                                General
-                              </a>
-                              <a class="item" href="/cards/category/code">
-                                <div class="ui yellow empty circular label"></div>
-                                Code
-                              </a>
-                              <a class="item" href="/cards">
-                                <div class="ui green empty circular label"></div>
-                                All
-                              </a>
-                              <div class="divider"></div>
-                              <div class="header">
-                                <i class="code icon"></i>
-                                Filter by topic
-                              </div>
-                              {% set seq = ['blue', 'red', 'green', 'yellow', 'black', 'olive', 'violet', 'orange', 'purple', 'pink', 'brown'] %} 
-
+                            <form action="/dec/{{card.id}}" method="POST" class="ui formdec">
+                                <div class="field"style="display: none;">
+                                    <!-- <input type="text" name="question" value="{{ card.question }}"> -->
+                                    <textarea name="difficulty" id="" cols="1" rows="1">{{ card.difficulty }}</textarea>
+                                </div>
+                            <div class="ui labeled button" tabindex="1">
+                                <button type="submit"iv class="ui green button">
+                                    <i class="world icon"></i> I knew it :)
+                                  </button>
+                                {% if card%}
+                                <a class="ui basic red left pointing label">
+                                    {{ card.difficulty }}
+                                </a>
                             </div>
-                          </div>
+                            </form>
+
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-                {% endif %}
+            </div>
+
+            <div class="ui inverted segment">
+                <div class="ui active inverted placeholder">
+
+                    <div class="row">
+                        {% if card%}
+                        <div class="sixteen wide column">
+                            <!-- <a class="ui left floated big yellow button" href="/cards/{{ card.id }}">Edit!</a>-->
+
+                            <a class="ui left floated big green button" href="/"><i class="right arrow icon"></i> Next Random Card!</a>
+
+                            <a class="ui left floated big yellow button" href="/cards">Show all cards<i class="right arrow icon"></i></a>
+                            
+
+                                            <!-- <div class="ui right floated massive teal buttons">
+                                <div class="ui button">View!</div>
+                                <div class="ui floating dropdown icon button">
+                                    <i class="dropdown icon"></i>
+                                    <div class="ui big menu">
+                                    <a href="/cards/general" class="item"><i class="edit icon"></i> General</a>
+                                    <a href="/cards/code" class="item"><i class="code icon"></i> Code</a>
+                                    <a href="/cards" class="item"><i class="globe icon"></i> All</a>
+                                    </div>
+                                </div> -->
+
+                            <div class="ui labeled icon top right pointing dropdown right floated big teal button">
+                                    <i class="filter icon"></i>
+                                    <span class="text">Filter Cards</span>
+                                    <div class="scrollable menu">
+                                        <div class="ui search icon input">
+                                            <i class="search icon"></i>
+                                            <input type="text" name="search" placeholder="Search cards...">
+                                        </div>
+                                        <div class="divider"></div>
+                                        <div class="header">
+                                            <i class="tags icon"></i>
+                                            Filter by category
+                                        </div>
+                                        <a class="item" href="/cards/category/english">
+                                            <div class="ui blue empty circular label"></div>
+                                            English
+                                        </a>
+                                        <a class="item" href="/cards/category/general">
+                                            <div class="ui blue empty circular label"></div>
+                                            General
+                                        </a>
+                                        <a class="item" href="/cards/category/code">
+                                            <div class="ui yellow empty circular label"></div>
+                                            Code
+                                        </a>
+                                        <a class="item" href="/cards">
+                                            <div class="ui green empty circular label"></div>
+                                            All
+                                        </a>
+                                        <div class="divider"></div>
+                                        <div class="header">
+                                            <i class="code icon"></i>
+                                            Filter by topic
+                                            {% for card in cards %}
+                                            <a class="item"href="/cards/topic{{card.topic}}">
+                                            <OPTION value={{card.topic}} >{{card.topic}}</option>
+                                            </a>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="divider"></div>
+                                        <div class="header">
+                                            <i class="code icon"></i>
+                                            Filter by difficulty
+                                            {% for card in cards %}
+                                            <OPTION value={{card.difficulty}}>{{card.difficulty}}</option>
+                                                
+                                            {% endfor %}
+                                        </div>
+                                        {% set seq = ['blue', 'red', 'green', 'yellow', 'black', 'olive', 'violet', 'orange', 'purple', 'pink', 'brown'] %} 
+
+                                    </div>
+                            
+                        </div>
+                        
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div> 
