@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="eight wide column">
                     <div class="ui tall stacked segment">
-                        <a class="ui black ribbon label">Topic</a>
+                        <a class="ui black ribbon label">Question</a>
                         {% if card %}
                         <h1 class="ui header ellipsis topic">{{ card.topic }}</h1>
                         {% else %}
@@ -37,7 +37,7 @@
                 </div>
                 <div class="eight wide column">
                     <div class="ui tall stacked segment">
-                        <a class="ui green ribbon label">Question</a>
+                        <a class="ui green ribbon label">Answer</a>
                         <div class="ui green right corner label"
                         data-content="Add a new Flash Card."
                         data-position="right center">
@@ -54,7 +54,11 @@
             <div class="row">
                 {% if card%}
                 <div class="sixteen wide column">
-                    <a class="ui left floated big green button" href="/cards/{{ card.id }}">Edit!</a>
+                   <!-- <a class="ui left floated big yellow button" href="/cards/{{ card.id }}">Edit!</a>-->
+                   <a class="ui left floated big green button" href="/">Next Random Card!</a>
+
+                   <a class="ui left floated big yellow button" href="/cards">Show all cards</a>
+
                     <!-- <div class="ui right floated massive teal buttons">
                         <div class="ui button">View!</div>
                         <div class="ui floating dropdown icon button">
@@ -65,6 +69,7 @@
                             <a href="/cards" class="item"><i class="globe icon"></i> All</a>
                             </div>
                         </div> -->
+
                         <div class="ui labeled icon top right pointing dropdown right floated big teal button">
                             <i class="filter icon"></i>
                             <span class="text">Filter Cards</span>
