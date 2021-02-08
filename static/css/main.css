@@ -37,3 +37,29 @@
     bottom: 0;
     width: 100%;
 }
+
+
+
+#inner {
+    display: table;
+    margin: 0 auto;
+    border: 1px solid black;
+    justify-content: center;
+
+}
+  
+#outer {
+    border: 1px solid red;
+    width:100%
+}
+div.container4 {
+    height: 10em;
+    position: relative }
+div.container4 p {
+    margin: 0;
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }

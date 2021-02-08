@@ -56,6 +56,60 @@
             {% endfor %}
         </div>
     </div>
+    <div class="ui labeled icon top right pointing dropdown right floated big teal button">
+        <i class="filter icon"></i>
+        <span class="text">Filter Cards</span>
+            <div class="scrollable menu">
+                <div class="ui search icon input">
+                    <i class="search icon"></i>
+                    <input type="text" name="search" placeholder="Search cards...">
+                </div>
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="tags icon"></i>
+                    Filter by category
+                </div>
+                <a class="item" href="/cards/category/english">
+                    <div class="ui blue empty circular label"></div>
+                    English
+                </a>
+                <a class="item" href="/cards/category/general">
+                    <div class="ui blue empty circular label"></div>
+                    General
+                </a>
+                <a class="item" href="/cards/category/code">
+                    <div class="ui yellow empty circular label"></div>
+                    Code
+                </a>
+                <a class="item" href="/cards">
+                    <div class="ui green empty circular label"></div>
+                    All
+                </a>
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="code icon"></i>
+                    Filter by topic
+                    {% for card in cards %}
+                    <a class="item"href="/cards/topic{{card.topic}}">
+                    <OPTION value={{card.topic}} >{{card.topic}}</option>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="code icon"></i>
+                    Filter by difficulty
+                    {% for card in cards %}
+                    <OPTION value={{card.difficulty}}>{{card.difficulty}}</option>
+                        
+                    {% endfor %}
+                </div>
+                {% set seq = ['blue', 'red', 'green', 'yellow', 'black', 'olive', 'violet', 'orange', 'purple', 'pink', 'brown'] %} 
+
+            </div>
+    
+    </div>
     <div class="ui long modal">
         <i class="close icon"></i>
         <div class="modaltitle header">
