@@ -10,6 +10,9 @@ from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 import random
 
+from flask_apscheduler import APScheduler
+from playsound import playsound
+
 #initliazing our flask app, SQLAlchemy and Marshmallow
 app = Flask(__name__)
 auth = HTTPBasicAuth()# Authentication
@@ -18,6 +21,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+scheduler = APScheduler()
 
 class Card(db.Model):
    id = db.Column(db.Integer, primary_key = True)
@@ -168,5 +172,12 @@ def get_card_topic(card_topic):
     return render_template("cards.html", cards=cards)
 
 
+def scheduleTask():
+    print("This test runs every 1hour seconds")
+    playsound('Alarm05.wav')
+
+
 if __name__ == "__main__":
+    scheduler.add_job(id = 'Scheduled Task', func=scheduleTask, trigger="interval", seconds=3600)
+    scheduler.start()
     app.run(debug=True)
