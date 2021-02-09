@@ -1,6 +1,6 @@
 {% extends "base.html" %}
     {% block content %}
-    <div class="ui main container">
+    <div class="ui Two column  container segment">
         <form action="/cards/new" method="POST" class="ui form">
             <div class="field">
                 <label for="topic">Question</label>
@@ -54,6 +54,18 @@
                     <div class="ui radio checkbox">
                         <input type="radio" name="category" value="dictation" required>
                         <label>Dictation</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="category" value="writting" required>
+                        <label>Writing</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="category" value="speaking" required>
+                        <label>Speaking</label>
                     </div>
                 </div>
             </div>

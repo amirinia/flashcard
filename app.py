@@ -7,9 +7,10 @@ from flask_httpauth import HTTPBasicAuth # Authentication
 from flask_marshmallow import Marshmallow
 from pygments import highlight
 import random
-
 from flask_apscheduler import APScheduler
 from playsound import playsound
+
+from flask_gtts import gtts
 
 #initliazing our flask app, SQLAlchemy and Marshmallow
 app = Flask(__name__)
@@ -21,7 +22,9 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 scheduler = APScheduler()
 
-
+gtts(app,
+     route=True,
+     route_path='/gtts')
 
 class Card(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -183,7 +186,7 @@ def get_card_difficulty(card_difficulty):
     return render_template("cards.html", cards=cards)
 
 def scheduleTask():
-    print("This test runs every 1hour seconds")
+    print("Every 1hour makes sound as a reminder")
     playsound('Alarm05.wav')
 
 

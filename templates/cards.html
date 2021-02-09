@@ -53,14 +53,16 @@
             {% endfor %}
         </div>
     </div>
+
     <div class="ui green right corner label"
-                        data-content="Add a new Flash Card."
-                        data-position="right center">
-                        <a href="/cards/new"><i class="add icon" style="cursor: pointer;"></i></a> 
+            data-content="Add a new Flash Card."
+            data-position="right center">
+            <a href="/cards/new"><i class="add icon" style="cursor: pointer;"></i></a> 
     </div>
+
     <div class="ui labeled button">
         <a class="ui left floated big green button" href="/cards"><i class="right arrow icon"></i>Cards Page</a>
-        </div>
+    </div>
 
     <div class="ui labeled icon top right pointing dropdown right floated big teal button">
         <i class="filter icon"></i>
@@ -91,6 +93,17 @@
                     <div class="ui green empty circular label"></div>
                     All
                 </a>
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="code icon"></i>
+                    Filter by category
+                    {% for card in cards %}
+                    <a class="item"href="/cards/category/{{card.category}}">
+                    <OPTION value={{card.category}} >{{card.category }}</option>
+                    </a>
+                    {% endfor %}
+                </div>
+
                 <div class="divider"></div>
                 <div class="header">
                     <i class="code icon"></i>

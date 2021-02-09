@@ -1,7 +1,7 @@
 {% extends "base.html" %}
     {% block content %}
 
-    <div class="ui main container">
+    <div class="ui Two column  container segment">
         <div class="row">
             <div class="eight wide column">
                 <form action="/cards/{{card.id}}" method="POST" class="ui form">
@@ -36,6 +36,18 @@
                             <div class="ui radio checkbox">
                                 <input type="radio" name="category" value="dictation" required>
                                 <label>Dictation</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="category" value="writting" required>
+                                <label>Writing</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="category" value="speaking" required>
+                                <label>Speaking</label>
                             </div>
                         </div>
                     </div>
