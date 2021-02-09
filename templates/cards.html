@@ -6,11 +6,6 @@
 {% block content %}
     <div class="ui segment">
 
-        <div class="ui icon input loading">
-            <input type="text" placeholder="Search...">
-            <i class="search icon"></i>
-          </div>
-
           <div class="ui icon input">
             <input type="text" placeholder="Search...">
             <i class="inverted circular search link icon"></i>
@@ -22,19 +17,14 @@
             <div class="four wide column" >
             <div class="ui fluid card">
                     <div class="content">
-
                         <div class="topic ellipsis header">
-                            <a class="music popup icon item" data-content="Play Music">
-                                <i class="play icon"></i>
-                              </a>
-                            {{card.question}}                        
-
+                            {{card.topic}}                        
                         </div>
                         <div class="question ellipsis meta">
                             <a class="bug popup icon item" >
                                 <i class="world icon"></i>
                               </a>
-                            {{card.topic}}
+                            {{card.question}}
                         </div>
                         <div class="question ellipsis meta">
                             <a class="bug popup icon item" >
@@ -55,6 +45,11 @@
             </div>
             {% endfor %}
         </div>
+    </div>
+    <div class="ui green right corner label"
+                        data-content="Add a new Flash Card."
+                        data-position="right center">
+                            <a href="/cards/new"><i class="add icon" style="cursor: pointer;"></i></a> 
     </div>
     <div class="ui labeled icon top right pointing dropdown right floated big teal button">
         <i class="filter icon"></i>

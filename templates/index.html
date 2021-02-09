@@ -47,7 +47,7 @@
                 <h4 class="ui horizontal divider header">
                     <i class="thumbtack icon"></i>
                    
-                  </h4>
+                </h4>
 
                 <div class="sixteen wide column" >  
                     <div class="ui tall stacked segment">
@@ -67,14 +67,10 @@
                     </div>
                 </div>
             </div>
-
+        <!--
             <button type="submit" class="ui circular teal button" onclick=""><i class="eye slash outline icon"></i>unhide Ans!</button>
-            
-            <div class="ui small circular rotate reveal image">
-                <img src="justen.jpg" class="visible content">
-                <img src="stevie.jpg" class="hidden content">
+            -->
 
-              </div>
 
             <div class="inner">
                     <form action="/inc/{{card.id}}" method="POST" class="ui forminc">
@@ -83,24 +79,21 @@
                                 <textarea name="difficulty" >{{ card.difficulty }}</textarea>
                             </div>
                         <div class="ui labeled button" >
-        
                             <button type="submit"iv class="ui red button">
                               <i class="battery quarter icon"></i> No Idea 
                             </button>
                             <a class="ui tag label"><i class="thumbs down icon"></i>Hard  </a>
-        
                             {% if card%}
-        
                             <a class="ui basic yellow left pointing label">
                                 {{ card.difficulty }}
                             </a>
                             {% endif %}
                         </div>
-                        </form>
+                    </form>
             </div>
 
 
-                    <div class="inner">
+            <div class="inner">
                         <form action="/dec/{{card.id}}" method="POST" class="ui formdec">
                             <div class="field"style="display: none;">
                                 <!-- <input type="text" name="question" value="{{ card.question }}"> -->
@@ -111,7 +104,6 @@
                                 <i class="battery full icon"></i> I knew it 
                             </button>
                             <a class="ui tag label"><i class="thumbs up outline icon"></i>Easy </a>
-        
                             {% if card%}
                             <a class="ui basic yellow left pointing label">
                                 {{ card.difficulty }}
@@ -119,19 +111,34 @@
                             {% endif %}
                         </div>
                         </form>
-                    </div>
-                <div class="row">
+            </div>
+            <h4 class="ui horizontal divider header">
+                <i class="graduation cap icon"></i>
+               
+            </h4>
+
+
+            <div class="row">
                     <div class="eight wide column">
                         {% if card%}
                         <div class="sixteen wide column">
+                            <div class="ui labeled button">
                             <a class="ui left floated big green button" href="/"><i class="right arrow icon"></i> Next Random Card!</a>
+                            </div>
+                            <h4 class="ui horizontal divider header">
+                                <i class="database icon"></i>
+                               
+                            </h4>
+
+                            <div class="ui labeled button">
                             <a class="ui left floated big blue button" href="/cards">Show all cards</a>
+                            </div>
                         </div>               
                         {% endif %}
                     </div>
-                </div>
+            </div>
 
-            
+
         </div>
     </div> 
     {% endblock %}

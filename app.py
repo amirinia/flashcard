@@ -24,19 +24,21 @@ ma = Marshmallow(app)
 scheduler = APScheduler()
 
 class Card(db.Model):
-   id = db.Column(db.Integer, primary_key = True)
-   category = db.Column(db.String(100))
-   topic = db.Column(db.String(100))
-   question = db.Column(db.String(100000))
-   difficulty = db.Column(db.Integer)
-   timestamp = db.Column(db.String(100), nullable=False,default = datetime.utcnow)
-   #user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id = db.Column(db.Integer, primary_key = True)
+    category = db.Column(db.String(100))
+    topic = db.Column(db.String(100))
+    question = db.Column(db.String(100000))
+    difficulty = db.Column(db.Integer)
+    timestamp = db.Column(db.String(100), nullable=False,default = datetime.utcnow)
+    #user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
-   def __init__(self, category, topic, question):
-       self.category = category
-       self.topic = topic
-       self.question = question
-
+    def __init__(self, category, topic, question,difficulty,timestamp):
+        self.category = category
+        self.topic = topic
+        self.question = question
+        self.difficulty = difficulty
+        self.timestamp = timestamp
+        
 # user cards
 class CardSchema(ma.Schema):
   class Meta:
@@ -60,13 +62,15 @@ def new_card():
         category = request.form["category"]      
         topic = request.form["topic"]
         question = request.form["question"]
-        difficulty = request.form["difficulty"]
         timestamp = time.ctime()
-        if category == 'code':
-            #using pygments to store code as html elements for highlighting.
-            question = highlight(question, PythonLexer(), HtmlFormatter())
-
-        card = Card(category, topic, question)
+        try:
+            difficulty = request.form["difficulty"]
+            if category == 'vocabulary':
+                #using pygments to store code as html elements for highlighting.
+                question = highlight(question, PythonLexer(), HtmlFormatter())
+        except:
+            difficulty = 0
+        card = Card(category, topic, question,difficulty,timestamp)
         db.session.add(card)
         db.session.commit()
         return redirect("/")
