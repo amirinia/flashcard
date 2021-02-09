@@ -6,8 +6,6 @@ from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 from flask_httpauth import HTTPBasicAuth # Authentication
 from flask_marshmallow import Marshmallow
 from pygments import highlight
-from pygments.lexers import PythonLexer
-from pygments.formatters import HtmlFormatter
 import random
 
 from flask_apscheduler import APScheduler
@@ -38,7 +36,7 @@ class Card(db.Model):
         self.question = question
         self.difficulty = difficulty
         self.timestamp = timestamp
-        
+
 # user cards
 class CardSchema(ma.Schema):
   class Meta:
@@ -65,9 +63,7 @@ def new_card():
         timestamp = time.ctime()
         try:
             difficulty = request.form["difficulty"]
-            if category == 'vocabulary':
-                #using pygments to store code as html elements for highlighting.
-                question = highlight(question, PythonLexer(), HtmlFormatter())
+
         except:
             difficulty = 0
         card = Card(category, topic, question,difficulty,timestamp)
@@ -78,7 +74,7 @@ def new_card():
 
 @app.route("/",methods=["GET"])
 def index():
-    all_satis = Card.query.all()
+    all_satis = Card.query.filter(Card.difficulty >=0).all()
     cards = cards_schema.dump(all_satis)
     topics = set(list(t.topic for t in all_satis))
     difficulties = set(list(t.difficulty for t in all_satis))
