@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/codestyles.css') }}">
 {% endblock %}
 {% block content %}
+<div class="ui Two column  container segment">
     <div class="ui segment">
 
           <div class="ui icon input">
@@ -32,6 +33,12 @@
                               </a>
                             {{card.difficulty}}
                         </div>
+                        <div class="question ellipsis meta">
+                            <a class="bug popup icon item" >
+                                <i class="cat icon"></i>
+                              </a>
+                            {{card.category}}
+                        </div>
                         <div class="description">
                         </div>
                     </div>
@@ -51,6 +58,10 @@
                         data-position="right center">
                         <a href="/cards/new"><i class="add icon" style="cursor: pointer;"></i></a> 
     </div>
+    <div class="ui labeled button">
+        <a class="ui left floated big green button" href="/cards"><i class="right arrow icon"></i>Cards Page</a>
+        </div>
+
     <div class="ui labeled icon top right pointing dropdown right floated big teal button">
         <i class="filter icon"></i>
         <span class="text">Filter Cards</span>
@@ -85,7 +96,7 @@
                     <i class="code icon"></i>
                     Filter by topic
                     {% for card in cards %}
-                    <a class="item"href="/cards/topic{{card.topic}}">
+                    <a class="item"href="/cards/topic/{{card.topic}}">
                     <OPTION value={{card.topic}} >{{card.topic}}</option>
                     </a>
                     {% endfor %}
@@ -96,8 +107,9 @@
                     <i class="code icon"></i>
                     Filter by difficulty
                     {% for card in cards %}
+                    <a class="item"href="/cards/difficulty/{{card.difficulty}}">
                     <OPTION value={{card.difficulty}}>{{card.difficulty}}</option>
-                        
+                    </a>
                     {% endfor %}
                 </div>
                 {% set seq = ['blue', 'red', 'green', 'yellow', 'black', 'olive', 'violet', 'orange', 'purple', 'pink', 'brown'] %} 
@@ -132,4 +144,6 @@
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}

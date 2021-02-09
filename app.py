@@ -21,6 +21,8 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 scheduler = APScheduler()
 
+
+
 class Card(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     category = db.Column(db.String(100))
@@ -126,9 +128,9 @@ def edit(card_id):
     card.question = request.form["question"]
     card.topic = request.form["topic"]
     card.difficulty = request.form["difficulty"]
-
+    card.category = request.form["category"]
     db.session.commit()
-    return redirect("/")
+    return redirect("/cards")
 
 @app.route("/cards/<int:card_id>/delete", methods=["POST"])
 def delete_card(card_id):
@@ -171,6 +173,14 @@ def get_card_topic(card_topic):
     #print(cards)
     return render_template("cards.html", cards=cards)
 
+# Cards by difficulty.
+@app.route("/cards/difficulty/<int:card_difficulty>")
+def get_card_difficulty(card_difficulty):
+    all_satis = Card.query.all()
+    #cards = cards_schema.dump(all_satis)
+    cards = [c for c in all_satis if c.difficulty == card_difficulty]
+    #print(cards)
+    return render_template("cards.html", cards=cards)
 
 def scheduleTask():
     print("This test runs every 1hour seconds")
