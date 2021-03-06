@@ -1,0 +1,10 @@
+flask_sqlalchemy 
+flask 
+flask_restful
+flask_httpauth 
+flask_marshmallow
+pygments 
+flask_apscheduler
+playsound
+flask_gtts 
+pandas
