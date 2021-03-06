@@ -13,7 +13,7 @@ For example:
 ![How to Use](/UI.PNG)
 
 ## Add new card:
-![How to Use](/Add Card.PNG)
+![How to Use](/AddCard.PNG)
 
 ## How to install:
 * git clone `https://github.com/amirinia/flashcard.git`
